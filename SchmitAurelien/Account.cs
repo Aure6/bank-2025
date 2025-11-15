@@ -1,4 +1,22 @@
-public abstract class Account
+interface IAccount
+{
+    // Propriété en lecture seule pour consulter le solde
+    double Balance { get; }
+
+    void Deposit(double amount);
+    bool Withdraw(double amount);
+}
+
+interface IBankAccount : IAccount
+{
+    void ApplyInterests();
+
+    // Propriétés en lecture seule pour identifier le compte
+    Person Owner { get; }
+    string Number { get; }
+}
+
+public abstract class Account : IBankAccount
 {
     public string Number { get; set; }
     // public double CreditLine { get; set; }
