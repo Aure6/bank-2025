@@ -1,15 +1,15 @@
 public class Bank
 {
-    public Dictionary<string, CurrentAccount> Accounts { get; }
+    public Dictionary<string, Account> Accounts { get; }
     public string Name;
 
     public Bank(string name)
     {
         Name = name;
-        Accounts = new Dictionary<string, CurrentAccount>();
+        Accounts = new Dictionary<string, Account>();
     }
 
-    public void AddAccount(CurrentAccount account)
+    public void AddAccount(Account account)
     {
         if (account != null && !Accounts.ContainsKey(account.Number))
         {

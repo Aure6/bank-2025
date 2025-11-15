@@ -1,28 +1,26 @@
-public class Account
+public abstract class Account
 {
     public string Number { get; set; }
-    public double CreditLine { get; set; }
+    // public double CreditLine { get; set; }
+    public double InterestRate { get; set; }
     public Person Owner { get; set; }
 
     private double _balance;
     public double Balance => _balance;
 
-    public Account(string number, double initialBalance, double creditLine, Person owner)
+    public Account(string number, double initialBalance, double interestRate, Person owner)
     {
         Number = number;
         _balance = initialBalance;
-        CreditLine = creditLine;
+        // CreditLine = creditLine;
+        InterestRate = interestRate;
         Owner = owner;
     }
 
     public bool Withdraw(double amount)
     {
-        if (_balance - amount >= -CreditLine)
-        {
-            _balance -= amount;
-            return true;
-        }
-        return false; // insufficient funds
+        _balance -= amount;
+        return true;
     }
 
     public void Deposit(double amount)
@@ -38,4 +36,11 @@ public class Account
 
         return Balance;
     }
+
+    protected abstract double CalculInterests();
+    public void ApplyInterests()
+    {
+        _balance += CalculInterests();
+    }
+
 }
